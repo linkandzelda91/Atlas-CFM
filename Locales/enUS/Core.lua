@@ -365,7 +365,7 @@ AtlasCFM.Localization:RegisterNamespace("UI", "enUS", {
     ["NewVersionAvailableFmt"] = "|cffff0000New version available!|r |cff00ff00Download here:|r %s",
     [" |cffA52A2Aloaded."] = true,
     ["NoticeText"] = "If you find anything missing, please report it at:|r",
-    ["NoticeLink"] = "https://github.com/byCFM2/Atlas-CFM/issues/|r",
+    ["NoticeLink"] = "https://github.com/linkandzelda91/Atlas-CFM-Octo|r",
     ["Link"] = "https://github.com/byCFM2/Atlas-CFM/|r",
 
     --************************************************
