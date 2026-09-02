@@ -171,7 +171,6 @@ end
 frame:RegisterEvent("PLAYER_ENTERING_WORLD")
 frame:RegisterEvent("CHAT_MSG_SYSTEM")
 frame:RegisterEvent("CHAT_MSG_ADDON")
-frame:RegisterEvent("QUEST_QUERY_COMPLETE")
 frame:SetBackdropBorderColor(0.80, 0.60, 0.25, 1)
 frame:SetScript("OnEvent", function()
     -- Debug print to verify script handler execution
