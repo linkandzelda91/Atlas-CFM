@@ -645,6 +645,47 @@ function AtlasCFM.Quest.OnEvent(event, arg1, arg2, arg3)
         else
             PrintA(Colors.GREEN .. "Atlas-CFM Quest:|r|cff00ffffAtlasCFM not loaded!|r")
         end
+        
+        -- Automatically sync quests if the server supports it
+        if QueryQuestsCompleted then
+            QueryQuestsCompleted()
+        end
+    elseif event == "QUEST_QUERY_COMPLETE" then
+        if GetQuestsCompleted then
+            local completedQuests = GetQuestsCompleted()
+            if type(completedQuests) == "table" then
+                AtlasCFMCharDB = AtlasCFMCharDB or {}
+                AtlasCFM.Q = AtlasCFM.Q or {}
+                
+                if AtlasCFM.Quest.DataBase then
+                    for instanceName, instanceData in pairs(AtlasCFM.Quest.DataBase) do
+                        if instanceData.Alliance then
+                            for i, quest in ipairs(instanceData.Alliance) do
+                                if quest.Id and completedQuests[quest.Id] then
+                                    local key = "Completed_" .. instanceName .. "_Quest_" .. i .. "_Alliance"
+                                    AtlasCFM.Q[key] = 1
+                                    AtlasCFMCharDB[key] = 1
+                                end
+                            end
+                        end
+                        if instanceData.Horde then
+                            for i, quest in ipairs(instanceData.Horde) do
+                                if quest.Id and completedQuests[quest.Id] then
+                                    local key = "Completed_" .. instanceName .. "_Quest_" .. i .. "_Horde"
+                                    AtlasCFM.Q[key] = 1
+                                    AtlasCFMCharDB[key] = 1
+                                end
+                            end
+                        end
+                    end
+                end
+                
+                -- Refresh UI if open
+                if AtlasCFM.Quest.UI_Main and AtlasCFM.Quest.UI_Main.QuestButtons then
+                    AtlasCFM.Quest.RefreshQuestButtons()
+                end
+            end
+        end
     elseif event == "CHAT_MSG_SYSTEM" then
         if (arg1 and strfind(arg1, SearchPattern)) then
             local _, _, questName = strfind(arg1, SearchPattern)
