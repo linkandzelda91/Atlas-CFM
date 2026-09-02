@@ -142,10 +142,6 @@ end
 UI.CloseButton = CreateElement("Button", "", frameMain, "UIPanelCloseButton", 30, 30, { "TOPRIGHT", -5, -3 })
 UI.CloseButton:SetScript("OnClick", function() AtlasCFM.Quest.CloseDetails() end)
 
-UI.FinishedQuestCheckbox = CreateElement("CheckButton", "", frameMain, "OptionsCheckButtonTemplate", 25, 25,
-    { "TOPRIGHT", -10, -50 })
-UI.FinishedQuestCheckbox:SetHitRectInsets(0, 0, 0, 0)
-UI.FinishedQuestCheckbox:SetScript("OnClick", function() AtlasCFM.Quest.ToggleFinishedFilter() end)
 
 -- Navigation Buttons
 UI.NextPageButtonRight = CreateElement("Button", "", frameMain, nil, 40, 40, { "BOTTOM", 45, 10 })
@@ -163,7 +159,7 @@ UI.NextPageButtonLeft:SetScript("OnClick", function() AtlasCFM.Quest.PreviousPag
 UI.NextPageButtonLeft:Hide()
 
 -- Set FrameLevels for controls
-for _, control in pairs({ UI.CloseButton, UI.FinishedQuestCheckbox, UI.NextPageButtonRight, UI.NextPageButtonLeft }) do
+for _, control in pairs({ UI.CloseButton, UI.NextPageButtonRight, UI.NextPageButtonLeft }) do
     local frame = control
     control:SetScript("OnShow", function()
         frame:SetFrameLevel(frameMain:GetFrameLevel() + 2) -- Higher level for controls
@@ -182,7 +178,7 @@ UI.QuestAttainLevel = CreateText("", frameMain, "GameFontNormal", { "TOPLEFT", 1
 UI.Prerequisite = CreateText("", frameMain, "GameFontNormal", { "TOPLEFT", 20, -75 }, 450, 500, "LEFT", "TOP")
 UI.Story = CreateText("", frameMain, "GameFontNormal", { "TOPLEFT", 50, -50 }, 410, 450, "LEFT", "TOP")
 UI.Rewards = CreateText("", frameMain, "GameFontNormal", { "BOTTOMLEFT", 20, 155 }, 400, 12, "LEFT", "TOP")
-UI.FinishedQuestText = CreateText("", UI.FinishedQuestCheckbox, "GameFontNormal", { "RIGHT", 0, 2 }, 150, 12)
+
 UI.PageCount = CreateText("", frameMain, "GameFontNormal", { "BOTTOM", 0, 18 }, 50, 20, "CENTER", "TOP")
 
 -- Assign UI table to the global namespace for access from other files

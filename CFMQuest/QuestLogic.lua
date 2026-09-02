@@ -262,18 +262,6 @@ end
 --- @return nil
 --- @usage Called when finished quest checkbox is clicked
 ---
-function AtlasCFM.Quest.ToggleFinishedFilter()
-    -- Build the quest key based on faction
-    local questKey = "Completed_" .. AtlasCFM.QCurrentInstance .. "_Quest_" .. AtlasCFM.QCurrentQuest
-    questKey = questKey .. (AtlasCFM.isHorde and "_Horde" or "_Alliance")
-    -- Update quest completion status
-    AtlasCFM.Q[questKey] = AtlasCFM.Quest.UI.FinishedQuestCheckbox:GetChecked() and 1 or nil
-    -- Save to player options
-    AtlasCFMCharDB[questKey] = AtlasCFM.Q[questKey]
-    -- Update UI
-    AtlasCFM.Quest.SetQuestButtons()
-    AtlasCFM.Quest.SetQuestText()
-end
 
 ---
 --- Advances to the next page of quest or story content

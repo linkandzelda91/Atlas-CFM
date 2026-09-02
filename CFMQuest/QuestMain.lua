@@ -55,8 +55,7 @@ function AtlasCFM.Quest.ClearAll()
     AtlasCFM.Quest.UI.QuestAttainLevel:SetText()
     AtlasCFM.Quest.UI.Rewards:SetText()
     AtlasCFM.Quest.UI.Story:SetText()
-    AtlasCFM.Quest.UI.FinishedQuestText:SetText()
-    AtlasCFM.Quest.UI.FinishedQuestCheckbox:Hide()
+
     AtlasCFM.Quest.HideQuestButtonHighlights()
     for b = 1, AtlasCFM.QMAXQUESTITEMS do
         AtlasCFM.Quest.UI.QuestItems[b].Icon:SetTexture()
@@ -183,11 +182,6 @@ end
 --- @return nil
 --- @usage Called when updating quest completion display
 ---
-local function kQuestFinishedSetChecked()
-    local questKey = "Completed_" .. AtlasCFM.QCurrentInstance .. "_Quest_" .. AtlasCFM.QCurrentQuest
-    questKey = questKey .. (AtlasCFM.isHorde and "_Horde" or "_Alliance")
-    AtlasCFM.Quest.UI.FinishedQuestCheckbox:SetChecked(AtlasCFM.Q[questKey] == 1)
-end
 
 ---
 --- Handles multi-page quest display and navigation
@@ -327,9 +321,6 @@ function AtlasCFM.Quest.SetQuestText()
     -- Clear all previous quest information
     AtlasCFM.Quest.ClearAll()
     local color = AtlasCFM.isHorde and redHorde or blue
-    -- Show the finished quest checkbox
-    AtlasCFM.Quest.UI.FinishedQuestCheckbox:Show()
-    AtlasCFM.Quest.UI.FinishedQuestText:SetText(color .. L["Quest finished:"])
 
     -- Get quest data from new structure
     local instanceData = AtlasCFM.Quest.DataBase[AtlasCFM.QCurrentInstance]
@@ -377,8 +368,6 @@ function AtlasCFM.Quest.SetQuestText()
         AtlasCFM.Quest.UI.Rewards:SetText(rewards)
     end
 
-    -- Update finished quest checkbox state
-    kQuestFinishedSetChecked()
 
     -- Check for and setup multi-page quest text
     kQuestExtendedPages()
