@@ -7,7 +7,7 @@ Overview: Atlas‑CFM is a dungeon map browser with an integrated loot panel and
 
 1) Compatibility and Requirements
 - Target Server: **Octo WoW**
-- Client: Turtle WoW 1.18.1 / WoW 1.12 (Interface: 11200)
+- Client: Turtle WoW 1.18.1
 - Addon folder: Interface\AddOns\Atlas-CFM
 - Saved variables:
   - Account-wide: AtlasCFMOptions
