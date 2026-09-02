@@ -1,5 +1,5 @@
 ## Interface: 11200
-## Title: Atlas-CFM-Octo
+## Title: Atlas-CFM
 ## Notes: instance map browser; shows possible boss loot and instance quests.
 ## Notes-deDE: Instanzkarten-Browser; zeigt die mögliche Beute der Bosse und die Quests der Instanz.
 ## Notes-esES: navegador de mapas de mazmorras; muestra el botín posible de los jefes y las misiones de la mazmorra.
