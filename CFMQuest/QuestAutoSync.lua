@@ -3,7 +3,10 @@ syncFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 syncFrame:RegisterEvent("QUEST_QUERY_COMPLETE")
 
 local function SyncQuests()
-    if not GetQuestsCompleted then return end
+    if not GetQuestsCompleted then 
+        if DEFAULT_CHAT_FRAME then DEFAULT_CHAT_FRAME:AddMessage("AtlasCFM: GetQuestsCompleted is nil!") end
+        return 
+    end
     local completedQuests = GetQuestsCompleted()
     if type(completedQuests) == "table" then
         local debugCount = 0
@@ -52,17 +55,32 @@ local function SyncQuests()
             questKey = questKey .. (AtlasCFM.isHorde and "_Horde" or "_Alliance")
             AtlasCFM.Quest.UI.FinishedQuestCheckbox:SetChecked(AtlasCFM.Q[questKey] == 1)
         end
+    else
+        if DEFAULT_CHAT_FRAME then DEFAULT_CHAT_FRAME:AddMessage("AtlasCFM AutoSync: GetQuestsCompleted returned non-table: " .. type(completedQuests)) end
     end
 end
 
 syncFrame:SetScript("OnEvent", function()
-    if event == "PLAYER_ENTERING_WORLD" then
+    local ev = event or (this and this.event)
+    if ev == "PLAYER_ENTERING_WORLD" then
         if QueryQuestsCompleted then
             if DEFAULT_CHAT_FRAME then DEFAULT_CHAT_FRAME:AddMessage("AtlasCFM Sync Frame: Triggering QueryQuestsCompleted()") end
             QueryQuestsCompleted()
+        else
+            if DEFAULT_CHAT_FRAME then DEFAULT_CHAT_FRAME:AddMessage("AtlasCFM Sync Frame: QueryQuestsCompleted does NOT exist!") end
         end
-    elseif event == "QUEST_QUERY_COMPLETE" then
+    elseif ev == "QUEST_QUERY_COMPLETE" then
         if DEFAULT_CHAT_FRAME then DEFAULT_CHAT_FRAME:AddMessage("AtlasCFM Sync Frame: QUEST_QUERY_COMPLETE fired!") end
         SyncQuests()
     end
 end)
+
+SLASH_ATLASSYNC1 = "/atlassync"
+SlashCmdList["ATLASSYNC"] = function(msg)
+    if DEFAULT_CHAT_FRAME then DEFAULT_CHAT_FRAME:AddMessage("AtlasCFM Sync Frame: Manual /atlassync triggered!") end
+    if QueryQuestsCompleted then
+        QueryQuestsCompleted()
+    else
+        if DEFAULT_CHAT_FRAME then DEFAULT_CHAT_FRAME:AddMessage("AtlasCFM Sync Frame: QueryQuestsCompleted is nil during /atlassync!") end
+    end
+end
