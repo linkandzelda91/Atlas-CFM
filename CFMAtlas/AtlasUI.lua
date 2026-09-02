@@ -456,24 +456,7 @@ do
     updateMarker:SetPoint("RIGHT", titleText, "LEFT", -10, 0)
     updateMarker:Hide()
 
-    -- Notice text
-    local noticeText = atlasFrame:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
-    noticeText:SetText(Colors.RED .. L["NoticeText"])
-    noticeText:SetPoint("TOP", -20, -17)
 
-    -- Notice link
-    local noticeBox = CreateFrame("EditBox", "AtlasCFMNoticeBox", atlasFrame, "InputBoxTemplate")
-    noticeBox:SetWidth(230)
-    noticeBox:SetHeight(16)
-    noticeBox:SetPoint("TOP", 240, -15)
-    noticeBox:SetMaxLetters(48)
-    noticeBox:SetAutoFocus(false)
-    noticeBox:SetText(Colors.RED .. L["NoticeLink"])
-    noticeBox:SetScript("OnTextChanged", function()
-        if noticeBox:GetText() ~= Colors.RED .. L["NoticeLink"] then
-            noticeBox:SetText(Colors.RED .. L["NoticeLink"])
-        end
-    end)
 
     -- Map texture
     atlasFrame:CreateTexture("AtlasCFMMap", "BACKGROUND")
