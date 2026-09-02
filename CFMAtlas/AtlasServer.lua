@@ -22,43 +22,18 @@ AtlasCFM.Server.CLASSIC = "Classic"
 AtlasCFM.Server.STRICT_TURTLE = "=" .. AtlasCFM.Server.TURTLE
 AtlasCFM.Server.STRICT_TURTLE1 = "=" .. AtlasCFM.Server.TURTLE1
 
-local currentDetectedServer = nil
+local currentDetectedServer = AtlasCFM.Server.TURTLE
 
 --- Detects the current server based on realm name and unique items
 --- @return string The name of the detected server
 function AtlasCFM.Server.Detect()
-    if currentDetectedServer then return currentDetectedServer end
-
-    local realm = GetRealmName()
-    local build = GetBuildInfo()
-
-    -- Check build version for Turtle WoW
-    if build == "1.18.1" then
-        currentDetectedServer = AtlasCFM.Server.TURTLE
-        return currentDetectedServer
-    elseif build == "1.17.2" then
-        currentDetectedServer = AtlasCFM.Server.TURTLE1
-        return currentDetectedServer
-    end
-
-    -- Check realm name for Vanilla Plus (Hogger)
-    if realm and string.find(realm, "Hogger") then
-        currentDetectedServer = AtlasCFM.Server.VANILLA_PLUS
-        return currentDetectedServer
-    end
-
-    currentDetectedServer = AtlasCFM.Server.CLASSIC
-    return currentDetectedServer
+    return AtlasCFM.Server.TURTLE
 end
 
 --- Gets the currently active server (manual choice or detected)
 --- @return string The active server profile name
 function AtlasCFM.Server.GetActive()
-    local choice = AtlasCFMOptions and AtlasCFMOptions.AtlasServer or AtlasCFM.Server.AUTO
-    if choice == AtlasCFM.Server.AUTO then
-        return AtlasCFM.Server.Detect()
-    end
-    return choice
+    return AtlasCFM.Server.TURTLE
 end
 
 --- Checks if the current server matches the given server name
