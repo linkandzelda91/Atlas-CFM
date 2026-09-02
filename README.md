@@ -1,6 +1,6 @@
 # Atlas‑CFM for Octo WoW — Documentation (1.12 / 1.18.1)
 
-Overview: Atlas‑CFM is a dungeon map browser with an integrated loot panel and quests module. It is currently being developed for the **Octo WoW** server (based on Turtle WoW 1.18.1). It retains compatibility with World of Warcraft 1.12 clients and includes localization support.
+Overview: Atlas‑CFM is a dungeon map browser with an integrated loot panel and quests module. It is currently being developed for the **Octo WoW** server (based on Turtle WoW 1.18.1).
 
 ![main](https://github.com/user-attachments/assets/fb4b69fc-158c-4f55-a0dd-bfd0a7967170)
 
