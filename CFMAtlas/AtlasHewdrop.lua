@@ -710,16 +710,6 @@ function AtlasCFM.HewdropMenus:UpdateSortByLabel()
     end
 end
 
-                        end
-                    end,
-                    'closeWhenClicked', true
-                )
-            end
-        end,
-        'point', "TOPLEFT",
-        'relativePoint', "BOTTOMLEFT"
-    )
-end
 
 
 
