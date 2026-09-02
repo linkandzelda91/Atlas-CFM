@@ -324,10 +324,7 @@ function AtlasCFM.OptionsInit()
         AtlasCFMLootFilterButton:SetText(filterText)
     end
 
-    -- Update Server label
-    if AtlasCFM.HewdropMenus and AtlasCFM.HewdropMenus.UpdateServerLabel then
-        AtlasCFM.HewdropMenus.UpdateServerLabel()
-    end
+
 end
 
 ---

@@ -179,14 +179,5 @@ frame:SetScript("OnEvent", function()
 end)
 frame:SetScript("OnShow", function() AtlasCFM.Quest.OnQuestFrameShow() end)
 
--- Check Completed Quests Button
-UI_Main.CheckCompletedQuestsButton = CreateElement("Button", "", frame, "OptionsButtonTemplate", 220, 20,
-    { "BOTTOM", 0, 10 }, L["Check Completed Quests"])
-UI_Main.CheckCompletedQuestsButton:SetScript("OnClick", function()
-    SendChatMessage(".queststatus")
-    this:Hide()
-end)
-UI_Main.CheckCompletedQuestsButton:SetScript("OnShow", setFrameLevelOnShow)
-
 -- Assign UI table to the global namespace
 AtlasCFM.Quest.UI_Main = UI_Main

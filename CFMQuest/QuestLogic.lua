@@ -645,6 +645,9 @@ function AtlasCFM.Quest.OnEvent(event, arg1, arg2, arg3)
         else
             PrintA(Colors.GREEN .. "Atlas-CFM Quest:|r|cff00ffffAtlasCFM not loaded!|r")
         end
+        
+        -- Automatically sync quests via Turtle WoW's custom hidden chat API
+        SendChatMessage(".queststatus")
     elseif event == "CHAT_MSG_SYSTEM" then
         if (arg1 and strfind(arg1, SearchPattern)) then
             local _, _, questName = strfind(arg1, SearchPattern)

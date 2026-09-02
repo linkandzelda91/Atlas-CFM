@@ -385,54 +385,6 @@ do
         AtlasCFM.OptionFrameDropDownCatsOnShow()
     end)
 
-    -- Server selection dropdown
-    local dropDownServer = CreateFrame("Button", "AtlasCFMOptionsFrameDropDownServer", optionsFrame)
-    dropDownServer:SetWidth(100)
-    dropDownServer:SetHeight(20)
-    dropDownServer:SetPoint("RIGHT", dropDownCats, "LEFT", -15, 0)
-
-    -- Background texture
-    local dropDownServerBg = dropDownServer:CreateTexture(nil, "BACKGROUND")
-    dropDownServerBg:SetTexture("Interface\\Tooltips\\UI-Tooltip-Background")
-    dropDownServerBg:SetVertexColor(0.1, 0.1, 0.1, 0.8)
-    dropDownServerBg:SetAllPoints(dropDownServer)
-
-    -- Text display
-    local dropDownServerText = dropDownServer:CreateFontString("AtlasCFMOptionsFrameDropDownServerText", "OVERLAY",
-        "GameFontHighlightSmall")
-    dropDownServerText:SetPoint("RIGHT", dropDownServer, "RIGHT", -20, 0)
-    dropDownServerText:SetJustifyH("LEFT")
-
-    -- Arrow texture
-    local dropDownServerArrow = dropDownServer:CreateTexture(nil, "OVERLAY")
-    dropDownServerArrow:SetTexture("Interface\\ChatFrame\\ChatFrameExpandArrow")
-    dropDownServerArrow:SetWidth(16)
-    dropDownServerArrow:SetHeight(16)
-    dropDownServerArrow:SetPoint("RIGHT", dropDownServer, "RIGHT", -2, 0)
-
-    -- Highlight
-    local dropDownServerHighlight = dropDownServer:CreateTexture(nil, "HIGHLIGHT")
-    dropDownServerHighlight:SetTexture("Interface\\QuestFrame\\UI-QuestTitleHighlight")
-    dropDownServerHighlight:SetBlendMode("ADD")
-    dropDownServerHighlight:SetAllPoints(dropDownServer)
-
-    dropDownServer:SetScript("OnClick", function()
-        if AtlasCFM.HewdropMenus:IsOpen(dropDownServer) then
-            AtlasCFM.HewdropMenus:Close()
-        else
-            AtlasCFM.HewdropMenus:OpenServerMenu(dropDownServer)
-        end
-    end)
-
-    local dropDownServerLabel = dropDownServer:CreateFontString(nil, "BACKGROUND", "GameFontNormalSmall")
-    dropDownServerLabel:SetText(L["Server:"])
-    dropDownServerLabel:SetPoint("TOP", 0, 12)
-
-    dropDownServer:SetScript("OnShow", function()
-        if AtlasCFM.HewdropMenus and AtlasCFM.HewdropMenus.UpdateServerLabel then
-            AtlasCFM.HewdropMenus.UpdateServerLabel()
-        end
-    end)
 
     -- QuestOptionsText
     local questOptionText = optionsFrame:CreateFontString(nil, "ARTWORK", "GameFontNormal")

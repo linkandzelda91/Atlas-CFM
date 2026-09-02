@@ -710,58 +710,8 @@ function AtlasCFM.HewdropMenus:UpdateSortByLabel()
     end
 end
 
---- Opens the server selection menu
-function AtlasCFM.HewdropMenus:OpenServerMenu(parent)
-    local servers = { "Auto", "Turtle WoW", "Turtle WoW 1.17.2", "Vanilla Plus", "Classic" }
 
-    Hewdrop:Open(parent,
-        'children', function(level, value)
-            for _, serverName in ipairs(servers) do
-                local name = serverName
-                local checked = (AtlasCFMOptions.AtlasServer == name)
-                Hewdrop:AddLine(
-                    'text', name,
-                    'checked', checked,
-                    'isRadio', true,
-                    'func', function()
-                        AtlasCFMOptions.AtlasServer = name
-                        if AtlasCFM.HewdropMenus.UpdateServerLabel then
-                            AtlasCFM.HewdropMenus.UpdateServerLabel()
-                        end
-                        -- Trigger immediate data refresh
-                        AtlasCFM.PopulateDropdowns()
-                        AtlasCFM.UpdateDropdownLabels()
-                        AtlasCFM.Refresh()
-                        if AtlasCFM.ReagentData and AtlasCFM.ReagentData.ClearIndex then
-                            AtlasCFM.ReagentData.ClearIndex()
-                        end
-                        if AtlasCFM.UpdateOptionsUI then
-                            AtlasCFM.UpdateOptionsUI()
-                        end
-                        if AtlasCFM.ProfessionHooks and AtlasCFM.ProfessionHooks.RefreshHooks then
-                            AtlasCFM.ProfessionHooks.RefreshHooks()
-                        end
-                        -- Update Loot Browser if visible
-                        if AtlasCFM.LootBrowserUI and AtlasCFM.LootBrowserUI.ScrollBarLootUpdate then
-                            AtlasCFM.LootBrowserUI.ScrollBarLootUpdate()
-                        end
-                    end,
-                    'closeWhenClicked', true
-                )
-            end
-        end,
-        'point', "TOPLEFT",
-        'relativePoint', "BOTTOMLEFT"
-    )
-end
 
---- Updates the server label in the options frame
-function AtlasCFM.HewdropMenus:UpdateServerLabel()
-    local serverName = AtlasCFMOptions.AtlasServer or "Auto"
-    if AtlasCFMOptionsFrameDropDownServerText then
-        AtlasCFMOptionsFrameDropDownServerText:SetText(serverName)
-    end
-end
 
 --- Opens the category selection menu (Continent, Party Size, Level, Type, All)
 function AtlasCFM.HewdropMenus:OpenCategoryMenu(parent)
