@@ -587,21 +587,31 @@ function AtlasCFM.ProfessionHooks.CreateAtlasButton(frame)
                         elseif AtlasCFM.LootBrowserUI.ShowLootPage then
                             AtlasCFM.LootBrowserUI.ShowLootPage(foundPage)
                         else
-                            -- Fallback implementation if ShowLootPage is missing
+                            -- Cache-aware fallback for profession pages that do
+                            -- not have a legacy global page function.
                             if AtlasCFMLootItemsFrame then
+                                FauxScrollFrame_SetOffset(AtlasCFMLootScrollBar, 0)
+                                AtlasCFMLootScrollBarScrollBar:SetValue(0)
                                 AtlasCFMLootItemsFrame.StoredElement = foundPage
-                                AtlasCFMLootItemsFrame.StoredMenu = nil -- Reset menu context if needed
+                                AtlasCFMLootItemsFrame.StoredMenu = nil
 
-                                -- Force update
-                                if AtlasCFM.LootBrowserUI.ScrollBarLootUpdate then
-                                    AtlasCFM.LootBrowserUI.ScrollBarLootUpdate()
-                                end
-
-                                -- Ensure frames are shown
                                 if AtlasCFMFrame and not AtlasCFMFrame:IsVisible() then
                                     AtlasCFMFrame:Show()
                                 end
                                 AtlasCFMLootItemsFrame:Show()
+
+                                local pageData = AtlasCFMLoot_Data and AtlasCFMLoot_Data[foundPage]
+                                if AtlasCFM.LootBrowserUI.ShowScrollBarLoading then
+                                    AtlasCFM.LootBrowserUI.ShowScrollBarLoading()
+                                end
+                                AtlasCFM.LootCache.CacheAllItems(pageData, function()
+                                    if AtlasCFM.LootBrowserUI.HideScrollBarLoading then
+                                        AtlasCFM.LootBrowserUI.HideScrollBarLoading()
+                                    end
+                                    if AtlasCFM.LootBrowserUI.ScrollBarLootUpdate then
+                                        AtlasCFM.LootBrowserUI.ScrollBarLootUpdate()
+                                    end
+                                end)
                             end
                         end
                     end
