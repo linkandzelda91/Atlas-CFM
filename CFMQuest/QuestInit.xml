@@ -4,5 +4,4 @@
 	<Include file="QuestUI.lua"/>
 	<Include file="QuestLogic.lua"/>
 	<Include file="QuestMain.lua"/>
-	<Include file="QuestAutoSync.lua"/>
 </Ui>
