@@ -14,3 +14,11 @@ This folder contains technical and development documentation to help you underst
    - A guide on adding new instances, quests, and loot tables to the addon.
 4. [API Environment & Constraints](API_Environment.md)
    - Outlines vanilla 1.12.1 limitations and utilizing modern API extensions provided by SuperWoW and ClassicAPI.
+
+## Versioning
+
+This project uses [Semantic Versioning (SemVer)](https://semver.org/) in the format `MAJOR.MINOR.PATCH` (e.g., `1.7.0`). When pushing changes, you must bump the version in `Atlas-CFM.toc` according to the following rules:
+
+- **MAJOR (1.x.x):** Increment when making incompatible API changes, major architectural rewrites, or removing core functionality.
+- **MINOR (x.7.x):** Increment when adding new features or functionality in a backward-compatible manner (e.g., Auto-Quest sync).
+- **PATCH (x.x.1):** Increment when making backward-compatible bug fixes or minor UI tweaks.
